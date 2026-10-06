@@ -1,45 +1,63 @@
+/**
+ * @author: Juan Gabriel Galarza Claros
+ * @since: 29/09/2026
+ */
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Lanzador {
     public static void main(String[] args) throws Exception {
+
+        // OBLIGATORIO PARA LAS CAPTURAS: autor de la actividad
+        System.out.println("Autor: Juan Gabriel Galarza Claros");
+
         String java = System.getProperty("java.home") + "\\bin\\java.exe";
-        String cp = System.getProperty("java.class.path");
 
-        // 5.a) Crear y lanzar los dos procesos en variables distintas
-        ProcessBuilder pb1 = new ProcessBuilder(java, "-cp", cp, "GeneraNumeros", "10");
-        ProcessBuilder pb2 = new ProcessBuilder(java, "-cp", cp, "GeneraNumeros", "10");
+        // Preparamos los dos procesos
+        ProcessBuilder pb1 = new ProcessBuilder(java, "-cp", System.getProperty("java.class.path"), "GeneraNumeros", "2");
+        ProcessBuilder pb2 = new ProcessBuilder(java, "-cp", System.getProperty("java.class.path"), "GeneraNumeros", "2");
 
-        Process p1 = pb1.start();
-        Process p2 = pb2.start();
+        // Lanzamos los dos y guardamos cada Process en una variable distinta
+        Process hijo1 = pb1.start();
+        Process hijo2 = pb2.start();
 
-        // 5.b) Mostrar los PID de ambos
-        System.out.println("PID Hijo 1: " + p1.pid());
-        System.out.println("PID Hijo 2: " + p2.pid());
+        // Mostramos por pantalla el PID de cada uno y del padre
+        System.out.println("Soy el padre, mi PID es: " + ProcessHandle.current().pid());
+        System.out.println("He lanzado un hijo 1 PID: " + hijo1.pid());
+        System.out.println("He lanzado un hijo 2 PID: " + hijo2.pid());
 
-        // 5.c) Leer la salida del Hijo 1
-        System.out.println("\n--- Salida Hijo 1 ---");
-        try (BufferedReader br1 = new BufferedReader(new InputStreamReader(p1.getInputStream()))) {
-            String linea;
-            while ((linea = br1.readLine()) != null) {
-                System.out.println("[HIJO 1] " + linea);
-            }
+        // --- LECTURA HIJO 1 ---
+        BufferedReader lector1 = new BufferedReader(new InputStreamReader(hijo1.getInputStream()));
+        String linea1;
+        while ((linea1 = lector1.readLine()) != null) {
+            System.out.println("[HIJO 1] " + linea1);
         }
 
-        // 5.c) Leer la salida del Hijo 2
-        System.out.println("\n--- Salida Hijo 2 ---");
-        try (BufferedReader br2 = new BufferedReader(new InputStreamReader(p2.getInputStream()))) {
-            String linea;
-            while ((linea = br2.readLine()) != null) {
-                System.out.println("[HIJO 2] " + linea);
-            }
+        // --- LECTURA HIJO 2 ---
+        BufferedReader lector2 = new BufferedReader(new InputStreamReader(hijo2.getInputStream()));
+        String linea2;
+        while ((linea2 = lector2.readLine()) != null) {
+            System.out.println("[HIJO 2] " + linea2);
         }
 
-        // 5.d) Esperar a los dos y mostrar sus códigos devueltos
-        int ret1 = p1.waitFor();
-        int ret2 = p2.waitFor();
+        // --- ESPERA Y CÓDIGOS DE SALIDA ---
+        int codigo1 = hijo1.waitFor();
+        if (codigo1 == 0) {
+            System.out.println("El hijo 1 ha terminado correctamente (codigo 0).");
+        } else if (codigo1 == 2) {
+            System.out.println("El hijo 1 ha recibido un argumento no valido (codigo 2).");
+        } else {
+            System.out.println("El hijo 1 ha terminado con el codigo: " + codigo1);
+        }
 
-        System.out.println("\nHijo 1 terminó con código: " + ret1);
-        System.out.println("Hijo 2 terminó con código: " + ret2);
+        int codigo2 = hijo2.waitFor();
+        if (codigo2 == 0) {
+            System.out.println("El hijo 2 ha terminado correctamente (codigo 0).");
+        } else if (codigo2 == 2) {
+            System.out.println("El hijo 2 ha recibido un argumento no valido (codigo 2).");
+        } else {
+            System.out.println("El hijo 2 ha terminado con el codigo: " + codigo2);
+        }
     }
 }
