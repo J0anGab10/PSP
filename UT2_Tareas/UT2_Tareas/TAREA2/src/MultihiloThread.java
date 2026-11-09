@@ -14,7 +14,7 @@
  * porque el orden lo decide el planificador del sistema operativo.
  *
  * OJO: si cambias start() por run(), NO se crea ningún hilo:
- * todo lo ejecuta el main y todos los mensajes dirán "main".
+ * todo lo ejecuta el main y todos los mensajes diran "main".
  * ==========================================================
  *
  * @author Juan Gabriel Galarza Claros
