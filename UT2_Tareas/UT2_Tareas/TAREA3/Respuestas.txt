@@ -1,0 +1,21 @@
+TAREA 3 - Respuestas a las preguntas (corregidas)
+
+1. ¿Por qué un hilo está en TIMED_WAITING y no en RUNNABLE durante la mayor
+   parte de su ejecución?
+   Porque pasa casi todo el tiempo dentro de Thread.sleep(), que es una espera
+   con tiempo límite. Imprimir un elemento tarda microsegundos, pero cada pausa
+   dura 300 o 500 ms.
+
+2. En el momento 4, ¿por qué los dos hilos tienen estados distintos?
+   Porque Numeros ya ha terminado (5 x 300 = 1500 ms) y está en TERMINATED,
+   mientras que a Letras le quedan pausas (5 x 500 = 2500 ms en total) y sigue
+   dormido, en TIMED_WAITING. Depende de la duración de las pausas.
+
+3. BLOCKED y WAITING no aparecen. ¿Cuándo entraría un hilo en cada uno?
+   - BLOCKED: cuando intenta entrar en un bloque o método synchronized que
+     está ocupado por otro hilo.
+   - WAITING: cuando llama a wait() o a join() sin tiempo límite y se queda
+     esperando un aviso o a que otro hilo termine.
+
+NOTA SOBRE EL MOMENTO 2: justo después de start() lo normal es RUNNABLE, pero
+puede salir TIMED_WAITING si el hilo fue muy rápido. Lo decide el planificador.

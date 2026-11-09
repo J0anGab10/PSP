@@ -1,0 +1,15 @@
+TAREA 7 - Respuestas a las preguntas
+
+¿Los hilos con mayor prioridad siempre ganan?
+No. La prioridad es solo una sugerencia al sistema operativo, que puede tenerla
+en cuenta o no. Además, solo se nota cuando la CPU está saturada (más hilos
+listos que núcleos). En esta carrera los corredores pasan casi todo el tiempo
+en sleep(), así que el ganador lo deciden los tiempos aleatorios. También
+depende del sistema: Windows agrupa los 10 niveles de Java en 7 y Linux, por
+defecto, los ignora.
+
+¿Qué sucede si todos tienen la misma prioridad?
+El planificador los trata por igual y les reparte la CPU por turnos
+(time-slicing). El orden de llegada sigue siendo impredecible y cambia en cada
+ejecución. Para controlar el orden habría que usar join() o mecanismos de
+sincronización, nunca las prioridades.

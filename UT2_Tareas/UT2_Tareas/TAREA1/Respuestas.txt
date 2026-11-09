@@ -1,0 +1,28 @@
+TAREA 1 - Situaciones en las que es útil usar varios hilos
+(Esta tarea no lleva código: son respuestas de análisis.)
+
+SITUACIÓN 1: FL Studio (producción musical)
+- Tareas y datos: un hilo maneja la interfaz (botones y menús) y otro procesa
+  los efectos de audio (como el Autotune). Comparten el buffer de audio y los
+  controles de volumen.
+- Ventajas: PARALELISMO REAL. Un núcleo mueve la interfaz y otro calcula el
+  audio pesado, así el sonido no se corta.
+- Problemas: CONDICIÓN DE CARRERA. Si la interfaz cambia el volumen justo
+  cuando el hilo de audio lo está leyendo, el sonido puede corromperse.
+
+SITUACIÓN 2: DaVinci Resolve (edición de vídeo)
+- Tareas y datos: un hilo exporta el vídeo al disco y otro mantiene la
+  interfaz para abrir otros proyectos. Comparten la RAM y el acceso al disco.
+- Ventajas: CONCURRENCIA. Se aprovechan las esperas del disco (E/S) para que
+  la interfaz siga respondiendo.
+- Problemas: INANICIÓN. Si se da mucha prioridad al hilo de exportar, el de la
+  interfaz se queda sin CPU y la aplicación no responde a los clics.
+
+SITUACIÓN 3: WhatsApp (mensajería)
+- Tareas y datos: un hilo sube un vídeo largo en segundo plano y otro recibe
+  mensajes de texto. Comparten la conexión de red y la base de datos de chats.
+- Ventajas: CONCURRENCIA. Mientras la subida espera a la red, se reciben los
+  textos pequeños.
+- Problemas: INTERBLOQUEO. Si el hilo del vídeo coge la red y espera la base de
+  datos, y el de texto coge la base de datos y espera la red, los dos se quedan
+  bloqueados para siempre.

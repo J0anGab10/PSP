@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/UT2_Tareas/TAREA2/TAREA2.iml" filepath="$PROJECT_DIR$/UT2_Tareas/TAREA2/TAREA2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/UT2_Tareas/TAREA3/TAREA3.iml" filepath="$PROJECT_DIR$/UT2_Tareas/TAREA3/TAREA3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/UT2_Tareas/TAREA4/TAREA4.iml" filepath="$PROJECT_DIR$/UT2_Tareas/TAREA4/TAREA4.iml" />
+      <module fileurl="file://$PROJECT_DIR$/UT2_Tareas/TAREA5/TAREA5.iml" filepath="$PROJECT_DIR$/UT2_Tareas/TAREA5/TAREA5.iml" />
+      <module fileurl="file://$PROJECT_DIR$/UT2_Tareas/TAREA6/TAREA6.iml" filepath="$PROJECT_DIR$/UT2_Tareas/TAREA6/TAREA6.iml" />
+      <module fileurl="file://$PROJECT_DIR$/UT2_Tareas/TAREA7/TAREA7.iml" filepath="$PROJECT_DIR$/UT2_Tareas/TAREA7/TAREA7.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/UT2_Tareas.iml" filepath="$PROJECT_DIR$/.idea/UT2_Tareas.iml" />
+    </modules>
+  </component>
+</project>

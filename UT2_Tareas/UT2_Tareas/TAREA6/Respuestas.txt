@@ -1,0 +1,17 @@
+TAREA 6 - Explicación
+
+Experimento sin release(): los 4 primeros jugadores entran, pero al salir no
+devuelven su plaza. El contador de permisos se queda en 0 para siempre, así que
+los otros 6 jugadores esperan indefinidamente en acquire() y el programa no
+termina (hay que pararlo con el botón Stop de IntelliJ).
+
+Cómo controla Semaphore el acceso: es un contador de permisos que empieza en
+PLAZAS. acquire() coge un permiso (si no queda ninguno, el hilo espera) y
+release() lo devuelve y deja pasar a un hilo que esperaba. Así nunca hay más
+de PLAZAS jugadores dentro a la vez.
+
+Con PLAZAS = 5 entran 5 jugadores a la vez y la simulación termina antes.
+
+Mejora (para el 10): el release() va en un finally que empieza justo después
+del acquire(), para que el permiso se devuelva siempre aunque haya un error,
+pero solo si de verdad se había conseguido.

@@ -1,0 +1,13 @@
+TAREA 5 - Explicación del experimento
+
+Con un static int y contadorLikes++ (3 hilos x 10.000 likes) se esperan 30.000,
+pero sale MENOS y cada ejecución da un número distinto. Apunta aquí los totales
+que te salgan al ejecutarlo varias veces en tu ordenador.
+
+Por qué: contadorLikes++ no es una sola operación, son 3 pasos (leer, sumar 1
+y escribir). Si dos hilos leen el mismo valor a la vez, los dos escriben el
+mismo resultado y se pierde un like. Es una CONDICIÓN DE CARRERA.
+
+Con AtomicInteger, incrementAndGet() hace los 3 pasos como una operación
+ATÓMICA (indivisible): ningún hilo puede colarse en medio, así que el total
+siempre es correcto (300) sin necesidad de usar synchronized.

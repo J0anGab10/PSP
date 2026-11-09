@@ -1,0 +1,28 @@
+UT2 - PROGRAMACIÓN MULTIHILO - TAREAS CORREGIDAS
+Autor: Juan Gabriel Galarza Claros
+
+TAREA1  Situaciones con varios hilos      -> Respuestas.txt (no lleva código)
+TAREA2  Crear hilos (Thread y Runnable)   -> MultihiloThread.java, MultihiloRunnable.java
+TAREA3  Estados de un hilo (getState)     -> EstadosHilosDemo.java + Respuestas.txt
+TAREA4  Productor-consumidor              -> IntercambioHilosDemoCola.java (BlockingQueue)
+                                             IntercambioHilosDemoWaitNot.java (wait/notify, código del profesor)
+TAREA5  Likes con AtomicInteger           -> LikesSimulacion.java (correcto)
+                                             LikesSimulacionInt.java (experimento con int)
+                                             Respuestas.txt
+TAREA6  Sala con Semaphore                -> SalaVideojuegos.java + Respuestas.txt
+TAREA7  Carrera con prioridades           -> CarreraHilos.java + Respuestas.txt
+
+CÓMO USARLOS EN INTELLIJ
+- Copia el .java en la carpeta src de un proyecto y ejecútalo con el triángulo verde.
+- El nombre del archivo debe ser IGUAL que el de la clase public (mayúsculas incluidas).
+- Cada archivo empieza con un bloque de comentarios que explica la idea del
+  programa en pocas líneas. Léelo antes de mirar el código.
+
+LAS 5 IDEAS QUE SE REPITEN EN TODAS LAS TAREAS
+1. start() crea el hilo; run() directo NO.
+2. join() hace que el main espere a que el hilo termine.
+3. sleep() y otros métodos lanzan InterruptedException: se captura con try/catch
+   y en el catch se pone Thread.currentThread().interrupt().
+4. Si varios hilos tocan el mismo dato, hay que sincronizar
+   (AtomicInteger, synchronized, BlockingQueue, Semaphore...).
+5. El orden de los mensajes cambia en cada ejecución: no es un error.
