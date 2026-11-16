@@ -1,3 +1,5 @@
+package examen;
+
 import java.util.Random;
 import java.util.concurrent.Semaphore;
 public class Clientes implements Runnable {
